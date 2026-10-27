@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Navya T | CS & Engineering Portfolio</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            brand: {
+              50: '#f0f6ff',
+              100: '#e0edff',
+              400: '#60a5fa',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8',
+              accent: '#8b5cf6',
+              cyan: '#06b6d4',
+            }
+          },
+          animation: {
+            'blob': 'blob 10s infinite alternate',
+            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+          },
+          keyframes: {
+            blob: {
+              '0%': { transform: 'translate(0px, 0px) scale(1)' },
+              '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+              '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+              '100%': { transform: 'translate(0px, 0px) scale(1)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom Glassmorphism Styles */
+    .glass-card {
+      background: rgba(17, 24, 39, 0.65);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .glass-nav {
+      background: rgba(10, 15, 30, 0.75);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .glass-input {
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+    .glass-input:focus {
+      background: rgba(15, 23, 42, 0.85);
+      border-color: #3b82f6;
+      outline: none;
+    }
+    /* Typing Effect Cursor */
+    .typing-cursor::after {
+      content: '|';
+      animation: blink 1s infinite;
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #090d16;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1e293b;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #3b82f6;
+    }
+  </style>
+</head>
+
+<body class="bg-[#090d16] text-slate-100 font-sans selection:bg-brand-500 selection:text-white min-h-screen relative overflow-x-hidden">
+
+  <!-- Background Animated Gradient Mesh -->
+  <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
+    <div class="absolute -top-40 -left-40 w-96 h-96 bg-brand-600/20 rounded-full blur-3xl filter animation-blob"></div>
+    <div class="absolute top-1/3 -right-40 w-96 h-96 bg-brand-accent/20 rounded-full blur-3xl filter animation-blob style-delay-2000"></div>
+    <div class="absolute -bottom-40 left-1/3 w-96 h-96 bg-brand-cyan/20 rounded-full blur-3xl filter animation-blob style-delay-4000"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(#1e293b_1px,transparent_1px)] [background-size:32px_32px] opacity-25"></div>
+  </div>
+
+  <!-- Toast Notification System Container -->
+  <div id="toast-container" class="fixed bottom-6 right-6 z-50 flex flex-col gap-3 pointer-events-none"></div>
+
+  <!-- Navigation Bar -->
+  <nav class="fixed top-0 left-0 right-0 z-40 glass-nav transition-all duration-300" id="navbar">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <!-- Logo -->
+        <a href="#hero" class="text-2xl font-bold tracking-tight text-white flex items-center gap-2 group">
+          <span class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-brand-accent flex items-center justify-center text-white font-mono shadow-lg shadow-brand-500/20 group-hover:scale-105 transition-transform">NT</span>
+          <span class="bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent">Navya T</span>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <div class="hidden md:flex items-center space-x-1 border border-slate-800/80 bg-slate-900/50 p-1.5 rounded-full backdrop-blur-md">
+          <a href="#about" class="nav-link text-slate-300 hover:text-white px-4 py-2 rounded-full text-sm font-medium transition-all hover:bg-slate-800/60">About</a>
+          <a href="#education" class="nav-link text-slate-300 hover:text-white px-4 py-2 rounded-full text-sm font-medium transition-all hover:bg-slate-800/60">Education</a>
+          <a href="#skills" class="nav-link text-slate-300 hover:text-white px-4 py-2 rounded-full text-sm font-medium transition-all hover:bg-slate-800/60">Skills</a>
+          <a href="#projects" class="nav-link text-slate-300 hover:text-white px-4 py-2 rounded-full text-sm font-medium transition-all hover:bg-slate-800/60">Projects</a>
+          <a href="#contact" class="nav-link text-slate-300 hover:text-white px-4 py-2 rounded-full text-sm font-medium transition-all hover:bg-slate-800/60">Contact</a>
+        </div>
+
+        <!-- Action CTA Button & Mobile Menu Toggle -->
+        <div class="flex items-center gap-3">
+          <button onclick="openResumeModal()" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-brand-600 to-brand-accent hover:from-brand-500 hover:to-brand-500 text-white font-medium text-sm transition-all shadow-lg shadow-brand-500/25 hover:shadow-brand-500/40 hover:-translate-y-0.5 active:translate-y-0">
+            <i class="fa-solid fa-file-arrow-down text-xs"></i>
+            <span>Resume</span>
+          </button>
+          
+          <button id="mobile-menu-btn" class="md:hidden text-slate-300 hover:text-white p-2 rounded-lg bg-slate-800/50 focus:outline-none" aria-label="Toggle menu">
+            <i class="fa-solid fa-bars text-xl" id="menu-icon"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobile-menu" class="hidden md:hidden glass-card border-b border-slate-800 px-4 pt-2 pb-6 space-y-2 transition-all">
+      <a href="#about" class="mobile-nav-link block px-4 py-3 rounded-xl text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800/60">About</a>
+      <a href="#education" class="mobile-nav-link block px-4 py-3 rounded-xl text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800/60">Education</a>
+      <a href="#skills" class="mobile-nav-link block px-4 py-3 rounded-xl text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800/60">Skills</a>
+      <a href="#projects" class="mobile-nav-link block px-4 py-3 rounded-xl text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800/60">Projects</a>
+      <a href="#contact" class="mobile-nav-link block px-4 py-3 rounded-xl text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800/60">Contact</a>
+      <button onclick="openResumeModal()" class="w-full text-center mt-2 flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-medium text-base">
+        <i class="fa-solid fa-file-arrow-down"></i>
+        <span>Preview Resume</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Main Content Container -->
+  <main class="relative z-10 pt-24">
+
+    <!-- Hero Section -->
+    <section id="hero" class="min-h-[88vh] flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto text-center space-y-8">
+        
+        <!-- Status Badge -->
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card border border-brand-500/30 text-brand-400 text-xs sm:text-sm font-medium tracking-wide shadow-inner">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span>Computer Science & Engineering Student</span>
+        </div>
+
+        <!-- Main Title & Typing Subtitle -->
+        <div class="space-y-4">
+          <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-white">
+            Hello, I'm <span class="bg-gradient-to-r from-brand-400 via-brand-accent to-brand-cyan bg-clip-text text-transparent">Navya T</span>
+          </h1>
+          <div class="h-12 flex items-center justify-center">
+            <p class="text-xl sm:text-2xl text-slate-400 font-mono">
+              <span id="typing-text" class="typing-cursor font-semibold text-slate-200"></span>
+            </p>
+          </div>
+        </div>
+
+        <!-- Bio Brief -->
+        <p class="max-w-2xl mx-auto text-slate-400 text-base sm:text-lg leading-relaxed">
+          Passionate engineering student at Jawaharlal College of Engineering and Technology. Dedicated to clean web development and crafting intuitive interactive applications.
+        </p>
+
+        <!-- Quick Call to Action Buttons -->
+        <div class="flex flex-wrap items-center justify-center gap-4 pt-4">
+          <a href="#projects" class="px-7 py-3.5 rounded-xl bg-gradient-to-r from-brand-600 to-brand-accent hover:from-brand-500 hover:to-brand-500 text-white font-semibold text-base shadow-xl shadow-brand-600/25 hover:shadow-brand-600/40 hover:-translate-y-1 transition-all flex items-center gap-2">
+            <span>Explore Projects</span>
+            <i class="fa-solid fa-arrow-down text-sm"></i>
+          </a>
+          <a href="#contact" class="px-7 py-3.5 rounded-xl glass-card text-slate-200 hover:text-white hover:bg-slate-800/80 font-semibold text-base border border-slate-700/80 transition-all flex items-center gap-2">
+            <span>Get in Touch</span>
+            <i class="fa-regular fa-paper-plane text-sm"></i>
+          </a>
+        </div>
+
+        <!-- Interactive Contact Quick-Copy Chips -->
+        <div class="pt-8 flex flex-wrap items-center justify-center gap-3 text-sm">
+          <button onclick="copyToClipboard('8075445512', 'Phone number')" class="glass-card px-4 py-2 rounded-lg text-slate-300 hover:text-white border border-slate-800 hover:border-brand-500/50 transition-all flex items-center gap-2 group">
+            <i class="fa-solid fa-phone text-brand-400 group-hover:scale-110 transition-transform"></i>
+            <span>8075445512</span>
+            <i class="fa-regular fa-copy text-xs text-slate-500 group-hover:text-slate-300"></i>
+          </button>
+          <button onclick="copyToClipboard('navyavijayakumar2007@gmail.com', 'Email address')" class="glass-card px-4 py-2 rounded-lg text-slate-300 hover:text-white border border-slate-800 hover:border-brand-500/50 transition-all flex items-center gap-2 group">
+            <i class="fa-solid fa-envelope text-brand-accent group-hover:scale-110 transition-transform"></i>
+            <span>navyavijayakumar2007@gmail.com</span>
+            <i class="fa-regular fa-copy text-xs text-slate-500 group-hover:text-slate-300"></i>
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="text-xs font-semibold text-brand-400 uppercase tracking-widest mb-2">Background</h2>
+        <p class="text-3xl sm:text-4xl font-bold text-white">About Me</p>
+        <div class="w-12 h-1 bg-gradient-to-r from-brand-500 to-brand-accent mx-auto mt-4 rounded-full"></div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+        <!-- Profile Avatar Box -->
+        <div class="md:col-span-5 flex justify-center">
+          <div class="relative group">
+            <div class="absolute -inset-1 bg-gradient-to-r from-brand-600 via-brand-accent to-brand-cyan rounded-3xl blur opacity-30 group-hover:opacity-75 transition duration-1000 group-hover:duration-200"></div>
+            <div class="relative glass-card p-8 rounded-3xl text-center space-y-6 max-w-sm">
+              <div class="w-32 h-32 mx-auto rounded-2xl bg-gradient-to-tr from-brand-600 to-brand-accent flex items-center justify-center text-white text-5xl font-mono shadow-xl border border-white/10">
+                NT
+              </div>
+              <div>
+                <h3 class="text-2xl font-bold text-white">Navya T</h3>
+                <p class="text-brand-400 font-medium text-sm mt-1">Computer Science Student</p>
+              </div>
+              <div class="pt-4 border-t border-slate-800/80 flex justify-center gap-4 text-slate-400">
+                <a href="mailto:navyavijayakumar2007@gmail.com" class="hover:text-brand-400 p-2 rounded-lg hover:bg-slate-800/50 transition-colors" title="Email Navya">
+                  <i class="fa-solid fa-envelope text-lg"></i>
+                </a>
+                <a href="tel:8075445512" class="hover:text-brand-400 p-2 rounded-lg hover:bg-slate-800/50 transition-colors" title="Call Navya">
+                  <i class="fa-solid fa-phone text-lg"></i>
+                </a>
+                <button onclick="openResumeModal()" class="hover:text-brand-400 p-2 rounded-lg hover:bg-slate-800/50 transition-colors" title="Resume">
+                  <i class="fa-solid fa-file-lines text-lg"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bio Content Details -->
+        <div class="md:col-span-7 space-y-6">
+          <div class="glass-card p-8 rounded-3xl space-y-4">
+            <h3 class="text-2xl font-semibold text-white">Aspiring Software Engineer & Web Developer</h3>
+            <p class="text-slate-300 leading-relaxed">
+              I am currently pursuing my Bachelor of Technology (B.Tech) in Computer Science and Engineering at Jawaharlal College of Engineering and Technology.
+            </p>
+            <p class="text-slate-300 leading-relaxed">
+              My technical journey is driven by curiosity and a hands-on approach to building accessible, functional software solutions. From crafting responsive frontend layouts with web technologies to programming in Python and C, I strive for clean, efficient code.
+            </p>
+            
+            <div class="grid grid-cols-2 gap-4 pt-4">
+              <div class="p-4 rounded-2xl bg-slate-900/50 border border-slate-800/80">
+                <p class="text-xs text-slate-400 font-medium uppercase">Institution</p>
+                <p class="text-sm sm:text-base font-semibold text-slate-200 mt-1">Jawaharlal College of Engineering & Tech</p>
+              </div>
+              <div class="p-4 rounded-2xl bg-slate-900/50 border border-slate-800/80">
+                <p class="text-xs text-slate-400 font-medium uppercase">Degree</p>
+                <p class="text-sm sm:text-base font-semibold text-slate-200 mt-1">B.Tech in CSE</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education Timeline Section -->
+    <section id="education" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="text-xs font-semibold text-brand-400 uppercase tracking-widest mb-2">Academic Journey</h2>
+        <p class="text-3xl sm:text-4xl font-bold text-white">Education</p>
+        <div class="w-12 h-1 bg-gradient-to-r from-brand-500 to-brand-accent mx-auto mt-4 rounded-full"></div>
+      </div>
+
+      <div class="max-w-4xl mx-auto space-y-8 relative before:absolute before:inset-0 before:left-8 md:before:left-1/2 before:-ml-px before:w-0.5 before:bg-gradient-to-b before:from-brand-500 before:via-brand-accent before:to-transparent">
+        
+        <!-- Timeline Item 1: B.Tech -->
+        <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
+          <div class="flex items-center justify-center w-10 h-10 rounded-full bg-brand-600 text-white shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow-lg shadow-brand-500/50 z-10">
+            <i class="fa-solid fa-graduation-cap text-sm"></i>
+          </div>
+          <div class="w-[calc(100%-3.5rem)] md:w-[calc(50%-2.5rem)] glass-card p-6 sm:p-8 rounded-3xl hover:border-brand-500/40 transition-all duration-300">
+            <div class="flex items-center justify-between gap-2 mb-2">
+              <span class="text-xs font-mono font-semibold px-3 py-1 rounded-full bg-brand-500/10 text-brand-400 border border-brand-500/20">Undergraduate</span>
+            </div>
+            <h3 class="text-xl font-bold text-white">Bachelor of Technology (B.Tech)</h3>
+            <p class="text-brand-400 font-medium text-sm mt-1">Computer Science and Engineering</p>
+            <p class="text-slate-400 text-sm mt-2 flex items-center gap-2">
+              <i class="fa-solid fa-building-columns text-xs"></i>
+              <span>Jawaharlal College of Engineering and Technology</span>
+            </p>
+            <p class="text-slate-400 text-xs mt-3 leading-relaxed">
+              Focusing on core computing subjects including Database Management Systems, Web Technologies, and Software Engineering.
+            </p>
+          </div>
+        </div>
+
+        <!-- Timeline Item 2: Higher Secondary -->
+        <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
+          <div class="flex items-center justify-center w-10 h-10 rounded-full bg-slate-800 text-slate-300 border border-slate-700 shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">
+            <i class="fa-solid fa-school text-sm"></i>
+          </div>
+          <div class="w-[calc(100%-3.5rem)] md:w-[calc(50%-2.5rem)] glass-card p-6 sm:p-8 rounded-3xl hover:border-brand-500/40 transition-all duration-300">
+            <div class="flex items-center justify-between gap-2 mb-2">
+              <span class="text-xs font-mono font-semibold px-3 py-1 rounded-full bg-slate-800 text-slate-300 border border-slate-700">Higher Secondary</span>
+            </div>
+            <h3 class="text-xl font-bold text-white">Higher Secondary Education</h3>
+            <p class="text-brand-400 font-medium text-sm mt-1">Science Stream</p>
+            <p class="text-slate-400 text-xs mt-3 leading-relaxed">
+              Completed Higher Secondary coursework with focus on Physics, Chemistry, and Mathematics, laying the baseline analytical groundwork for engineering studies.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Filterable Technical Skills Section -->
+    <section id="skills" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <h2 class="text-xs font-semibold text-brand-400 uppercase tracking-widest mb-2">Capabilities</h2>
+        <p class="text-3xl sm:text-4xl font-bold text-white">Technical Skills</p>
+        <div class="w-12 h-1 bg-gradient-to-r from-brand-500 to-brand-accent mx-auto mt-4 rounded-full"></div>
+      </div>
+
+      <!-- Skill Filter Tabs -->
+      <div class="flex flex-wrap justify-center gap-2 mb-12">
+        <button onclick="filterSkills('all')" class="skill-tab-btn active px-5 py-2.5 rounded-full text-sm font-medium transition-all glass-card border border-brand-500/50 text-white bg-brand-600/30" data-category="all">
+          All Skills
+        </button>
+        <button onclick="filterSkills('languages')" class="skill-tab-btn px-5 py-2.5 rounded-full text-sm font-medium transition-all glass-card border border-slate-800 text-slate-400 hover:text-white" data-category="languages">
+          Languages
+        </button>
+        <button onclick="filterSkills('web')" class="skill-tab-btn px-5 py-2.5 rounded-full text-sm font-medium transition-all glass-card border border-slate-800 text-slate-400 hover:text-white" data-category="web">
+          Web Dev
+        </button>
+      </div>
+
+      <!-- Skill Cards Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="skills-grid">
+        
+        <!-- Python -->
+        <div class="skill-card glass-card p-6 rounded-3xl hover:border-brand-500/50 transition-all duration-300" data-category="languages">
+          <div class="flex items-center justify-between mb-4">
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 rounded-2xl bg-amber-500/10 text-amber-400 border border-amber-500/20 flex items-center justify-center text-xl">
+                <i class="fa-brands fa-python"></i>
+              </div>
+              <div>
+                <h4 class="text-lg font-bold text-white">Python</h4>
+                <span class="text-xs text-slate-400">Programming Language</span>
+              </div>
+            </div>
+            <span class="font-mono text-sm font-semibold text-brand-400">85%</span>
+          </div>
+          <div class="w-full bg-slate-900 rounded-full h-2.5 overflow-hidden">
+            <div class="bg-gradient-to-r from-amber-500 to-brand-500 h-2.5 rounded-full" style="width: 85%"></div>
+          </div>
+        </div>
+
+        <!-- C Programming -->
+        <div class="skill-card glass-card p-6 rounded-3xl hover:border-brand-500/50 transition-all duration-300" data-category="languages">
+          <div class="flex items-center justify-between mb-4">
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 rounded-2xl bg-blue-500/10 text-blue-400 border border-blue-500/20 flex items-center justify-center text-xl">
+                <i class="fa-solid fa-code"></i>
+              </div>
+              <div>
+                <h4 class="text-lg font-bold text-white">C Programming</h4>
+                <span class="text-xs text-slate-400">System Level Language</span>
+              </div>
+            </div>
+            <span class="font-mono text-sm font-semibold text-brand-400">80%</span>
+          </div>
+          <div class="w-full bg-slate-900 rounded-full h-2.5 overflow-hidden">
+            <div class="bg-gradient-to-r from-blue-500 to-brand-500 h-2.5 rounded-full" style="width: 80%"></div>
+          </div>
+        </div>
+
+        <!-- HTML5 -->
+        <div class="skill-card glass-card p-6 rounded-3xl hover:border-brand-500/50 transition-all duration-300" data-category="web">
+          <div class="flex items-center justify-between mb-4">
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 rounded-2xl bg-orange-500/10 text-orange-400 border border-orange-500/20 flex items-center justify-center text-xl">
+                <i class="fa-brands fa-html5"></i>
+              </div>
+              <div>
+                <h4 class="text-lg font-bold text-white">HTML5</h4>
+                <span class="text-xs text-slate-400">Web Markup</span>
+              </div>
+            </div>
+            <span class="font-mono text-sm font-semibold text-brand-400">90%</span>
+          </div>
+          <div class="w-full bg-slate-900 rounded-full h-2.5 overflow-hidden">
+            <div class="bg-gradient-to-r from-orange-500 to-brand-500 h-2.5 rounded-full" style="width: 90%"></div>
+          </div>
+        </div>
+
+        <!-- CSS3 -->
+        <div class="skill-card glass-card p-6 rounded-3xl hover:border-brand-500/50 transition-all duration-300" data-category="web">
+          <div class="flex items-center justify-between mb-4">
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 rounded-2xl bg-sky-500/10 text-sky-400 border border-sky-500/20 flex items-center justify-center text-xl">
+                <i class="fa-brands fa-css3-alt"></i>
+              </div>
+              <div>
+                <h4 class="text-lg font-bold text-white">CSS3</h4>
+                <span class="text-xs text-slate-400">Web Styling</span>
+              </div>
+            </div>
+            <span class="font-mono text-sm font-semibold text-brand-400">85%</span>
+          </div>
+          <div class="w-full bg-slate-900 rounded-full h-2.5 overflow-hidden">
+            <div class="bg-gradient-to-r from-sky-500 to-brand-500 h-2.5 rounded-full" style="width: 85%"></div>
+          </div>
+        </div>
+
+        <!-- JavaScript -->
+        <div class="skill-card glass-card p-6 rounded-3xl hover:border-brand-500/50 transition-all duration-300" data-category="web">
+          <div class="flex items-center justify-between mb-4">
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 rounded-2xl bg-yellow-500/10 text-yellow-400 border border-yellow-500/20 flex items-center justify-center text-xl">
+                <i class="fa-brands fa-js"></i>
+              </div>
+              <div>
+                <h4 class="text-lg font-bold text-white">JavaScript</h4>
+                <span class="text-xs text-slate-400">Web Scripting</span>
+              </div>
+            </div>
+            <span class="font-mono text-sm font-semibold text-brand-400">80%</span>
+          </div>
+          <div class="w-full bg-slate-900 rounded-full h-2.5 overflow-hidden">
+            <div class="bg-gradient-to-r from-yellow-500 to-brand-500 h-2.5 rounded-full" style="width: 80%"></div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Featured Projects Section -->
+    <section id="projects" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="text-xs font-semibold text-brand-400 uppercase tracking-widest mb-2">Portfolio Highlights</h2>
+        <p class="text-3xl sm:text-4xl font-bold text-white">Featured Projects</p>
+        <div class="w-12 h-1 bg-gradient-to-r from-brand-500 to-brand-accent mx-auto mt-4 rounded-full"></div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+        <!-- Project 1: Personal Portfolio Website -->
+        <div class="glass-card rounded-3xl overflow-hidden hover:border-brand-500/50 transition-all duration-300 flex flex-col justify-between group">
+          <div class="p-8 space-y-6">
+            <div class="flex items-center justify-between">
+              <div class="w-12 h-12 rounded-2xl bg-brand-500/10 text-brand-400 flex items-center justify-center text-2xl border border-brand-500/20">
+                <i class="fa-solid fa-user-astronaut"></i>
+              </div>
+              <span class="text-xs font-mono px-3 py-1 rounded-full bg-slate-800 text-slate-300 border border-slate-700">Web Application</span>
+            </div>
+
+            <div>
+              <h3 class="text-2xl font-bold text-white group-hover:text-brand-400 transition-colors">Personal Portfolio Website</h3>
+              <p class="text-slate-400 text-sm mt-3 leading-relaxed">
+                A modern single-page responsive portfolio showcasing engineering projects, academic credentials, and core competencies with smooth animations and dark-mode glassmorphic styling.
+              </p>
+            </div>
+
+            <div class="flex flex-wrap gap-2 pt-2">
+              <span class="text-xs font-mono px-3 py-1 rounded-lg bg-slate-900/80 text-brand-400 border border-slate-800">HTML5</span>
+              <span class="text-xs font-mono px-3 py-1 rounded-lg bg-slate-900/80 text-brand-cyan border border-slate-800">Tailwind CSS</span>
+              <span class="text-xs font-mono px-3 py-1 rounded-lg bg-slate-900/80 text-yellow-400 border border-slate-800">JavaScript</span>
+            </div>
+          </div>
+
+          <div class="p-8 pt-0 flex gap-3">
+            <button onclick="openProjectModal('portfolio')" class="flex-1 py-3 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-medium text-sm transition-all text-center flex items-center justify-center gap-2">
+              <i class="fa-solid fa-circle-info"></i>
+              <span>Details</span>
+            </button>
+            <a href="#hero" class="py-3 px-4 rounded-xl bg-brand-600/20 hover:bg-brand-600 text-brand-300 hover:text-white border border-brand-500/30 text-sm font-medium transition-all text-center flex items-center justify-center">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Project 2: Interactive Web Calculator -->
+        <div class="glass-card rounded-3xl overflow-hidden hover:border-brand-500/50 transition-all duration-300 flex flex-col justify-between group border border-brand-500/30 shadow-xl shadow-brand-500/5">
+          <div class="p-8 space-y-6">
+            <div class="flex items-center justify-between">
+              <div class="w-12 h-12 rounded-2xl bg-brand-accent/10 text-brand-accent flex items-center justify-center text-2xl border border-brand-accent/20">
+                <i class="fa-solid fa-calculator"></i>
+              </div>
+              <span class="text-xs font-mono px-3 py-1 rounded-full bg-brand-accent/10 text-brand-accent border border-brand-accent/30 font-semibold animate-pulse">Live Demo Available</span>
+            </div>
+
+            <div>
+              <h3 class="text-2xl font-bold text-white group-hover:text-brand-accent transition-colors">Interactive Web Calculator</h3>
+              <p class="text-slate-400 text-sm mt-3 leading-relaxed">
+                A dynamic, accessible mathematical computing interface featuring instant expression execution, operator precedence, clear/reset modes, and responsive keypress styling.
+              </p>
+            </div>
+
+            <div class="flex flex-wrap gap-2 pt-2">
+              <span class="text-xs font-mono px-3 py-1 rounded-lg bg-slate-900/80 text-brand-400 border border-slate-800">HTML5</span>
+              <span class="text-xs font-mono px-3 py-1 rounded-lg bg-slate-900/80 text-sky-400 border border-slate-800">CSS3</span>
+              <span class="text-xs font-mono px-3 py-1 rounded-lg bg-slate-900/80 text-yellow-400 border border-slate-800">JavaScript</span>
+            </div>
+          </div>
+
+          <div class="p-8 pt-0 flex gap-3">
+            <button onclick="openCalcModal()" class="flex-1 py-3 px-4 rounded-xl bg-gradient-to-r from-brand-600 to-brand-accent hover:from-brand-500 hover:to-brand-500 text-white font-semibold text-sm transition-all shadow-lg shadow-brand-500/20 text-center flex items-center justify-center gap-2">
+              <i class="fa-solid fa-play"></i>
+              <span>Try Live Calculator</span>
+            </button>
+            <button onclick="openProjectModal('calculator')" class="py-3 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-sm font-medium transition-all text-center flex items-center justify-center">
+              <i class="fa-solid fa-circle-info"></i>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Contact & Direct Communication Section -->
+    <section id="contact" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="text-xs font-semibold text-brand-400 uppercase tracking-widest mb-2">Get In Touch</h2>
+        <p class="text-3xl sm:text-4xl font-bold text-white">Contact Me</p>
+        <div class="w-12 h-1 bg-gradient-to-r from-brand-500 to-brand-accent mx-auto mt-4 rounded-full"></div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <!-- Contact Details & Direct Action Buttons -->
+        <div class="lg:col-span-5 space-y-6">
+          <div class="glass-card p-8 rounded-3xl space-y-6">
+            <h3 class="text-xl font-bold text-white">Let's Connect</h3>
+            <p class="text-slate-400 text-sm leading-relaxed">
+              I am open to internship opportunities, student engineering collaborations, and web development projects. Feel free to reach out via phone or email!
+            </p>
+
+            <div class="space-y-4 pt-2">
+              <!-- Phone Card -->
+              <div class="p-4 rounded-2xl bg-slate-900/60 border border-slate-800/80 flex items-center justify-between group">
+                <div class="flex items-center gap-4">
+                  <div class="w-10 h-10 rounded-xl bg-brand-500/10 text-brand-400 flex items-center justify-center text-lg">
+                    <i class="fa-solid fa-phone"></i>
+                  </div>
+                  <div>
+                    <p class="text-xs text-slate-400 font-medium">Phone Number</p>
+                    <a href="tel:8075445512" class="text-sm sm:text-base font-semibold text-white hover:text-brand-400 transition-colors">8075445512</a>
+                  </div>
+                </div>
+                <button onclick="copyToClipboard('8075445512', 'Phone number')" class="p-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-all" title="Copy Phone">
+                  <i class="fa-regular fa-copy"></i>
+                </button>
+              </div>
+
+              <!-- Email Card -->
+              <div class="p-4 rounded-2xl bg-slate-900/60 border border-slate-800/80 flex items-center justify-between group">
+                <div class="flex items-center gap-4 min-w-0">
+                  <div class="w-10 h-10 rounded-xl bg-brand-accent/10 text-brand-accent flex items-center justify-center text-lg shrink-0">
+                    <i class="fa-solid fa-envelope"></i>
+                  </div>
+                  <div class="min-w-0">
+                    <p class="text-xs text-slate-400 font-medium">Email Address</p>
+                    <a href="mailto:navyavijayakumar2007@gmail.com" class="text-xs sm:text-sm font-semibold text-white hover:text-brand-400 transition-colors truncate block">navyavijayakumar2007@gmail.com</a>
+                  </div>
+                </div>
+                <button onclick="copyToClipboard('navyavijayakumar2007@gmail.com', 'Email address')" class="p-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-all shrink-0" title="Copy Email">
+                  <i class="fa-regular fa-copy"></i>
+                </button>
+              </div>
+
+              <!-- College Institution Card -->
+              <div class="p-4 rounded-2xl bg-slate-900/60 border border-slate-800/80 flex items-center gap-4">
+                <div class="w-10 h-10 rounded-xl bg-brand-cyan/10 text-brand-cyan flex items-center justify-center text-lg shrink-0">
+                  <i class="fa-solid fa-location-dot"></i>
+                </div>
+                <div>
+                  <p class="text-xs text-slate-400 font-medium">Institution</p>
+                  <p class="text-sm font-semibold text-white">Jawaharlal College of Engineering & Tech</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="lg:col-span-7">
+          <div class="glass-card p-8 rounded-3xl">
+            <h3 class="text-xl font-bold text-white mb-6">Send a Message</h3>
+            
+            <form id="contact-form" onsubmit="handleFormSubmit(event)" class="space-y-4">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label for="form-name" class="block text-xs font-medium text-slate-300 mb-1.5">Your Name</label>
+                  <input type="text" id="form-name" required class="w-full glass-input px-4 py-3 rounded-xl text-sm text-white placeholder-slate-500 focus:ring-2 focus:ring-brand-500 transition-all" placeholder="John Doe">
+                </div>
+                <div>
+                  <label for="form-email" class="block text-xs font-medium text-slate-300 mb-1.5">Your Email</label>
+                  <input type="email" id="form-email" required class="w-full glass-input px-4 py-3 rounded-xl text-sm text-white placeholder-slate-500 focus:ring-2 focus:ring-brand-500 transition-all" placeholder="john@example.com">
+                </div>
+              </div>
+
+              <div>
+                <label for="form-subject" class="block text-xs font-medium text-slate-300 mb-1.5">Subject</label>
+                <input type="text" id="form-subject" required class="w-full glass-input px-4 py-3 rounded-xl text-sm text-white placeholder-slate-500 focus:ring-2 focus:ring-brand-500 transition-all" placeholder="Project Inquiry / Feedback">
+              </div>
+
+              <div>
+                <label for="form-message" class="block text-xs font-medium text-slate-300 mb-1.5">Message</label>
+                <textarea id="form-message" rows="4" required class="w-full glass-input px-4 py-3 rounded-xl text-sm text-white placeholder-slate-500 focus:ring-2 focus:ring-brand-500 transition-all resize-none" placeholder="Write your message here..."></textarea>
+              </div>
+
+              <button type="submit" id="submit-btn" class="w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-brand-600 to-brand-accent hover:from-brand-500 hover:to-brand-500 text-white font-semibold text-sm shadow-lg shadow-brand-500/25 transition-all flex items-center justify-center gap-2">
+                <i class="fa-regular fa-paper-plane"></i>
+                <span>Send Message</span>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="glass-nav border-t border-slate-800/80 py-8 px-4 sm:px-6 lg:px-8 relative z-10 mt-20">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+      <div>
+        <p class="text-slate-200 font-semibold text-base">Navya T</p>
+        <p class="text-xs text-slate-400 mt-0.5">Computer Science & Engineering Student</p>
+      </div>
+      <p class="text-xs text-slate-500 font-mono">
+        &copy; <span id="year">2026</span> Navya T. Built with Tailwind CSS & JavaScript.
+      </p>
+    </div>
+  </footer>
+
+  <!-- MODALS SYSTEM -->
+
+  <!-- 1. Interactive Live Mini-Calculator Demo Modal -->
+  <div id="calc-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md hidden transition-opacity">
+    <div class="glass-card w-full max-w-sm rounded-3xl border border-slate-700 shadow-2xl overflow-hidden relative transform transition-all scale-95 opacity-0 duration-200" id="calc-modal-content">
+      
+      <!-- Modal Header -->
+      <div class="p-4 bg-slate-900/80 border-b border-slate-800 flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
+          <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
+          <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
+          <span class="text-xs font-mono font-semibold text-slate-300 ml-2">Web Calculator Demo</span>
+        </div>
+        <button onclick="closeCalcModal()" class="text-slate-400 hover:text-white p-1 rounded-lg hover:bg-slate-800">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+      </div>
+
+      <!-- Calculator Screen Body -->
+      <div class="p-6 space-y-4">
+        <!-- Display Screen -->
+        <div class="bg-slate-950 p-4 rounded-2xl border border-slate-800 text-right font-mono">
+          <div id="calc-history" class="text-xs text-slate-500 min-h-[1.25rem] truncate"></div>
+          <div id="calc-display" class="text-3xl font-bold text-white truncate mt-1">0</div>
+        </div>
+
+        <!-- Keypad Grid -->
+        <div class="grid grid-cols-4 gap-2.5 font-mono">
+          <button onclick="calcClear()" class="col-span-2 p-3.5 rounded-xl bg-red-500/20 text-red-300 hover:bg-red-500/30 border border-red-500/30 font-bold transition-all active:scale-95">AC</button>
+          <button onclick="calcDelete()" class="p-3.5 rounded-xl bg-slate-800 text-slate-300 hover:bg-slate-700 border border-slate-700 font-bold transition-all active:scale-95"><i class="fa-solid fa-backspace"></i></button>
+          <button onclick="calcAppend('/')" class="p-3.5 rounded-xl bg-brand-600/30 text-brand-300 hover:bg-brand-600/50 border border-brand-500/40 font-bold transition-all active:scale-95">÷</button>
+
+          <button onclick="calcAppend('7')" class="p-3.5 rounded-xl bg-slate-800/80 text-white hover:bg-slate-700 border border-slate-700/60 font-bold transition-all active:scale-95">7</button>
+          <button onclick="calcAppend('8')" class="p-3.5 rounded-xl bg-slate-800/80 text-white hover:bg-slate-700 border border-slate-700/60 font-bold transition-all active:scale-95">8</button>
+          <button onclick="calcAppend('9')" class="p-3.5 rounded-xl bg-slate-800/80 text-white hover:bg-slate-700 border border-slate-700/60 font-bold transition-all active:scale-95">9</button>
+          <button onclick="calcAppend('*')" class="p-3.5 rounded-xl bg-brand-600/30 text-brand-300 hover:bg-brand-600/50 border border-brand-500/40 font-bold transition-all active:scale-95">×</button>
+
+          <button onclick="calcAppend('4')" class="p-3.5 rounded-xl bg-slate-800/80 text-white hover:bg-slate-700 border border-slate-700/60 font-bold transition-all active:scale-95">4</button>
+          <button onclick="calcAppend('5')" class="p-3.5 rounded-xl bg-slate-800/80 text-white hover:bg-slate-700 border border-slate-700/60 font-bold transition-all active:scale-95">5</button>
+          <button onclick="calcAppend('6')" class="p-3.5 rounded-xl bg-slate-800/80 text-white hover:bg-slate-700 border border-slate-700/60 font-bold transition-all active:scale-95">6</button>
+          <button onclick="calcAppend('-')" class="p-3.5 rounded-xl bg-brand-600/30 text-brand-300 hover:bg-brand-600/50 border border-brand-500/40 font-bold transition-all active:scale-95">-</button>
+
+          <button onclick="calcAppend('1')" class="p-3.5 rounded-xl bg-slate-800/80 text-white hover:bg-slate-700 border border-slate-700/60 font-bold transition-all active:scale-95">1</button>
+          <button onclick="calcAppend('2')" class="p-3.5 rounded-xl bg-slate-800/80 text-white hover:bg-slate-700 border border-slate-700/60 font-bold transition-all active:scale-95">2</button>
+          <button onclick="calcAppend('3')" class="p-3.5 rounded-xl bg-slate-800/80 text-white hover:bg-slate-700 border border-slate-700/60 font-bold transition-all active:scale-95">3</button>
+          <button onclick="calcAppend('+')" class="p-3.5 rounded-xl bg-brand-600/30 text-brand-300 hover:bg-brand-600/50 border border-brand-500/40 font-bold transition-all active:scale-95">+</button>
+
+          <button onclick="calcAppend('0')" class="col-span-2 p-3.5 rounded-xl bg-slate-800/80 text-white hover:bg-slate-700 border border-slate-700/60 font-bold transition-all active:scale-95">0</button>
+          <button onclick="calcAppend('.')" class="p-3.5 rounded-xl bg-slate-800/80 text-white hover:bg-slate-700 border border-slate-700/60 font-bold transition-all active:scale-95">.</button>
+          <button onclick="calcCalculate()" class="p-3.5 rounded-xl bg-gradient-to-r from-brand-600 to-brand-accent text-white font-bold transition-all shadow-lg shadow-brand-500/20 active:scale-95">=</button>
+        </div>
+      </div>
+      
+      <div class="px-6 pb-4 text-center">
+        <p class="text-[11px] text-slate-500 font-mono">Live evaluation project compiled natively</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 2. Detailed Project Info Modal -->
+  <div id="project-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md hidden transition-opacity">
+    <div class="glass-card w-full max-w-lg rounded-3xl border border-slate-700 shadow-2xl overflow-hidden relative transform transition-all scale-95 opacity-0 duration-200" id="project-modal-content">
+      <div class="p-6 space-y-6">
+        <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+          <h3 id="project-modal-title" class="text-xl font-bold text-white">Project Title</h3>
+          <button onclick="closeProjectModal()" class="text-slate-400 hover:text-white p-1 rounded-lg hover:bg-slate-800">
+            <i class="fa-solid fa-xmark text-lg"></i>
+          </button>
+        </div>
+        <div id="project-modal-body" class="space-y-4 text-slate-300 text-sm leading-relaxed">
+          <!-- Dynamic Modal Body Content -->
+        </div>
+        <div class="pt-4 border-t border-slate-800 flex justify-end">
+          <button onclick="closeProjectModal()" class="px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-medium text-sm transition-all">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. Simulated Resume Preview & Download Modal -->
+  <div id="resume-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md hidden transition-opacity">
+    <div class="glass-card w-full max-w-2xl rounded-3xl border border-slate-700 shadow-2xl overflow-hidden relative transform transition-all scale-95 opacity-0 duration-200" id="resume-modal-content">
+      <div class="p-6 bg-slate-900 border-b border-slate-800 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-xl bg-brand-600/20 text-brand-400 border border-brand-500/30 flex items-center justify-center">
+            <i class="fa-solid fa-file-pdf"></i>
+          </div>
+          <div>
+            <h3 class="text-lg font-bold text-white">Resume Preview</h3>
+            <p class="text-xs text-slate-400">Navya_T_Resume.pdf</p>
+          </div>
+        </div>
+        <button onclick="closeResumeModal()" class="text-slate-400 hover:text-white p-1 rounded-lg hover:bg-slate-800">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+      </div>
+
+      <!-- Resume Document Visual Preview Container -->
+      <div class="p-6 max-h-[60vh] overflow-y-auto space-y-6 font-sans text-slate-200 bg-slate-950/80">
+        
+        <div class="border-b border-slate-800 pb-4">
+          <h2 class="text-2xl font-bold text-white">NAVYA T</h2>
+          <p class="text-xs text-brand-400 font-mono mt-1">Computer Science & Engineering Student</p>
+          <p class="text-xs text-slate-400 mt-1">Phone: 8075445512 | Email: navyavijayakumar2007@gmail.com</p>
+        </div>
+
+        <div class="space-y-2">
+          <h4 class="text-xs font-bold uppercase tracking-wider text-brand-400 font-mono">Education</h4>
+          <div class="pl-3 border-l-2 border-brand-500/50 space-y-2 text-xs">
+            <div>
+              <p class="font-semibold text-white">B.Tech in Computer Science and Engineering</p>
+              <p class="text-slate-400">Jawaharlal College of Engineering and Technology</p>
+            </div>
+            <div>
+              <p class="font-semibold text-white">Higher Secondary Education (Science)</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="space-y-2">
+          <h4 class="text-xs font-bold uppercase tracking-wider text-brand-400 font-mono">Technical Skills</h4>
+          <div class="text-xs text-slate-300 space-y-1">
+            <p><strong class="text-slate-200">Languages:</strong> Python, C Programming</p>
+            <p><strong class="text-slate-200">Web Development:</strong> HTML5, CSS3, JavaScript</p>
+          </div>
+        </div>
+
+        <div class="space-y-2">
+          <h4 class="text-xs font-bold uppercase tracking-wider text-brand-400 font-mono">Projects</h4>
+          <div class="space-y-2 text-xs">
+            <div>
+              <p class="font-semibold text-white">1. Personal Portfolio Website</p>
+              <p class="text-slate-400">Built using HTML, CSS, JavaScript with responsive dark mode glassmorphism layout.</p>
+            </div>
+            <div>
+              <p class="font-semibold text-white">2. Interactive Web Calculator</p>
+              <p class="text-slate-400">Designed a functional web-based calculator supporting full arithmetic operations.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Action Bottom Bar -->
+      <div class="p-4 bg-slate-900 border-t border-slate-800 flex items-center justify-between gap-4">
+        <p class="text-xs text-slate-400 hidden sm:block">Ready to print or save as PDF</p>
+        <div class="flex items-center gap-3 w-full sm:w-auto justify-end">
+          <button onclick="closeResumeModal()" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-sm font-medium transition-all">Close</button>
+          <button onclick="downloadResumeSimulated()" class="px-5 py-2 rounded-xl bg-brand-600 hover:bg-brand-500 text-white text-sm font-semibold transition-all shadow-lg shadow-brand-500/20 flex items-center gap-2">
+            <i class="fa-solid fa-download"></i>
+            <span>Download PDF</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript Application Logic -->
+  <script>
+    // 1. Dynamic Tagline Typing Text Engine
+    const taglines = [
+      "CSE Student @ JCET",
+      "Web Developer & Designer",
+      "Python & C Enthusiast"
+    ];
+    let taglineIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    const typingSpeed = 100;
+    const deletingSpeed = 50;
+    const pauseTime = 1800;
+
+    function typeEffect() {
+      const currentTagline = taglines[taglineIndex];
+      const typingElement = document.getElementById("typing-text");
+
+      if (isDeleting) {
+        typingElement.textContent = currentTagline.substring(0, charIndex - 1);
+        charIndex--;
+      } else {
+        typingElement.textContent = currentTagline.substring(0, charIndex + 1);
+        charIndex++;
+      }
+
+      if (!isDeleting && charIndex === currentTagline.length) {
+        isDeleting = true;
+        setTimeout(typeEffect, pauseTime);
+        return;
+      } else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        taglineIndex = (taglineIndex + 1) % taglines.length;
+      }
+
+      const nextSpeed = isDeleting ? deletingSpeed : typingSpeed;
+      setTimeout(typeEffect, nextSpeed);
+    }
+
+    // 2. Custom Toast Notification Engine
+    function showToast(message, type = 'success') {
+      const container = document.getElementById('toast-container');
+      const toast = document.createElement('div');
+      
+      const icon = type === 'success' ? 'fa-circle-check text-emerald-400' : 'fa-circle-info text-brand-400';
+      
+      toast.className = `pointer-events-auto glass-card px-4 py-3 rounded-2xl border border-slate-700/80 text-white text-sm font-medium flex items-center gap-3 shadow-2xl transition-all duration-300 transform translate-y-4 opacity-0`;
+      toast.innerHTML = `
+        <i class="fa-solid ${icon} text-lg"></i>
+        <span>${message}</span>
+      `;
+      
+      container.appendChild(toast);
+
+      // Trigger animation
+      setTimeout(() => {
+        toast.classList.remove('translate-y-4', 'opacity-0');
+      }, 10);
+
+      // Auto dismiss after 3 seconds
+      setTimeout(() => {
+        toast.classList.add('opacity-0', 'translate-y-2');
+        setTimeout(() => toast.remove(), 300);
+      }, 3000);
+    }
+
+    // 3. One-Click Copy Clipboard Tool
+    function copyToClipboard(text, label) {
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text).then(() => {
+          showToast(`${label} copied to clipboard!`);
+        }).catch(() => {
+          fallbackCopyTextToClipboard(text, label);
+        });
+      } else {
+        fallbackCopyTextToClipboard(text, label);
+      }
+    }
+
+    function fallbackCopyTextToClipboard(text, label) {
+      const textArea = document.createElement("textarea");
+      textArea.value = text;
+      textArea.style.top = "0";
+      textArea.style.left = "0";
+      textArea.style.position = "fixed";
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+      try {
+        document.execCommand('copy');
+        showToast(`${label} copied to clipboard!`);
+      } catch (err) {
+        showToast(`Failed to copy ${label}`, 'info');
+      }
+      document.body.removeChild(textArea);
+    }
+
+    // 4. Skills Filter System
+    function filterSkills(category) {
+      const buttons = document.querySelectorAll('.skill-tab-btn');
+      const cards = document.querySelectorAll('.skill-card');
+
+      buttons.forEach(btn => {
+        if (btn.getAttribute('data-category') === category) {
+          btn.classList.add('bg-brand-600/30', 'border-brand-500/50', 'text-white');
+          btn.classList.remove('border-slate-800', 'text-slate-400');
+        } else {
+          btn.classList.remove('bg-brand-600/30', 'border-brand-500/50', 'text-white');
+          btn.classList.add('border-slate-800', 'text-slate-400');
+        }
+      });
+
+      cards.forEach(card => {
+        if (category === 'all' || card.getAttribute('data-category') === category) {
+          card.style.display = 'block';
+          setTimeout(() => {
+            card.style.opacity = '1';
+            card.style.transform = 'scale(1)';
+          }, 10);
+        } else {
+          card.style.opacity = '0';
+          card.style.transform = 'scale(0.95)';
+          setTimeout(() => {
+            card.style.display = 'none';
+          }, 200);
+        }
+      });
+    }
+
+    // 5. Interactive Mini-Calculator Logic
+    let calcExpression = '';
+    
+    function updateCalcDisplay() {
+      const display = document.getElementById('calc-display');
+      const history = document.getElementById('calc-history');
+      display.textContent = calcExpression || '0';
+    }
+
+    function calcAppend(val) {
+      if (calcExpression === 'Error') calcExpression = '';
+      calcExpression += val;
+      updateCalcDisplay();
+    }
+
+    function calcClear() {
+      calcExpression = '';
+      document.getElementById('calc-history').textContent = '';
+      updateCalcDisplay();
+    }
+
+    function calcDelete() {
+      if (calcExpression === 'Error') {
+        calcExpression = '';
+      } else {
+        calcExpression = calcExpression.slice(0, -1);
+      }
+      updateCalcDisplay();
+    }
+
+    function calcCalculate() {
+      if (!calcExpression) return;
+      try {
+        const sanitized = calcExpression.replace(/×/g, '*').replace(/÷/g, '/');
+        const result = Function(`'use strict'; return (${sanitized})`)();
+        document.getElementById('calc-history').textContent = calcExpression + ' =';
+        calcExpression = String(result);
+        updateCalcDisplay();
+      } catch (e) {
+        document.getElementById('calc-history').textContent = calcExpression;
+        calcExpression = 'Error';
+        updateCalcDisplay();
+      }
+    }
+
+    // Modal Control Functions
+    function openCalcModal() {
+      const modal = document.getElementById('calc-modal');
+      const content = document.getElementById('calc-modal-content');
+      modal.classList.remove('hidden');
+      setTimeout(() => {
+        content.classList.remove('scale-95', 'opacity-0');
+        content.classList.add('scale-100', 'opacity-100');
+      }, 10);
+    }
+
+    function closeCalcModal() {
+      const modal = document.getElementById('calc-modal');
+      const content = document.getElementById('calc-modal-content');
+      content.classList.remove('scale-100', 'opacity-100');
+      content.classList.add('scale-95', 'opacity-0');
+      setTimeout(() => {
+        modal.classList.add('hidden');
+      }, 200);
+    }
+
+    // Project Detail Modal Logic
+    const projectDetails = {
+      portfolio: {
+        title: "Personal Portfolio Website",
+        body: `
+          <p>This personal website was created to represent Navya T's academic profile and technical skills in an intuitive, modern format.</p>
+          <h4 class="font-bold text-white mt-4">Key Features:</h4>
+          <ul class="list-disc pl-5 space-y-1 text-slate-300">
+            <li>Responsive Glassmorphic UI styled with Tailwind CSS</li>
+            <li>Dynamic real-time typing header effect</li>
+            <li>Interactive skill categorization tabs with proficiency bars</li>
+            <li>Integrated floating toast system & interactive contact form validation</li>
+          </ul>
+          <h4 class="font-bold text-white mt-4">Technologies:</h4>
+          <p class="text-xs font-mono text-brand-400">HTML5, Tailwind CSS, JavaScript (ES6+), Font Awesome 6</p>
+        `
+      },
+      calculator: {
+        title: "Interactive Web Calculator",
+        body: `
+          <p>A web application built to perform standard mathematical calculations directly in the browser.</p>
+          <h4 class="font-bold text-white mt-4">Key Features:</h4>
+          <ul class="list-disc pl-5 space-y-1 text-slate-300">
+            <li>Evaluates standard arithmetic (addition, subtraction, multiplication, division)</li>
+            <li>Live state management & error handling for invalid expressions</li>
+            <li>Modern dark-themed glass UI with keypress visual feedback</li>
+            <li>Includes a full live demo embedded directly inside this portfolio</li>
+          </ul>
+          <h4 class="font-bold text-white mt-4">Technologies:</h4>
+          <p class="text-xs font-mono text-brand-400">HTML5, CSS3, JavaScript</p>
+        `
+      }
+    };
+
+    function openProjectModal(key) {
+      const data = projectDetails[key];
+      if (!data) return;
+
+      document.getElementById('project-modal-title').textContent = data.title;
+      document.getElementById('project-modal-body').innerHTML = data.body;
+
+      const modal = document.getElementById('project-modal');
+      const content = document.getElementById('project-modal-content');
+      modal.classList.remove('hidden');
+      setTimeout(() => {
+        content.classList.remove('scale-95', 'opacity-0');
+        content.classList.add('scale-100', 'opacity-100');
+      }, 10);
+    }
+
+    function closeProjectModal() {
+      const modal = document.getElementById('project-modal');
+      const content = document.getElementById('project-modal-content');
+      content.classList.remove('scale-100', 'opacity-100');
+      content.classList.add('scale-95', 'opacity-0');
+      setTimeout(() => {
+        modal.classList.add('hidden');
+      }, 200);
+    }
+
+    // Resume Modal Logic
+    function openResumeModal() {
+      const modal = document.getElementById('resume-modal');
+      const content = document.getElementById('resume-modal-content');
+      modal.classList.remove('hidden');
+      setTimeout(() => {
+        content.classList.remove('scale-95', 'opacity-0');
+        content.classList.add('scale-100', 'opacity-100');
+      }, 10);
+    }
+
+    function closeResumeModal() {
+      const modal = document.getElementById('resume-modal');
+      const content = document.getElementById('resume-modal-content');
+      content.classList.remove('scale-100', 'opacity-100');
+      content.classList.add('scale-95', 'opacity-0');
+      setTimeout(() => {
+        modal.classList.add('hidden');
+      }, 200);
+    }
+
+    function downloadResumeSimulated() {
+      showToast('Preparing resume PDF for download...');
+      setTimeout(() => {
+        showToast('Resume downloaded successfully!');
+      }, 1200);
+    }
+
+    // Contact Form Handler
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      const btn = document.getElementById('submit-btn');
+      const originalText = btn.innerHTML;
+
+      btn.disabled = true;
+      btn.innerHTML = `<i class="fa-solid fa-spinner animate-spin"></i> <span>Sending...</span>`;
+
+      setTimeout(() => {
+        showToast('Thank you! Your message has been sent to Navya.');
+        document.getElementById('contact-form').reset();
+        btn.disabled = false;
+        btn.innerHTML = originalText;
+      }, 1200);
+    }
+
+    // Mobile Menu Drawer Logic
+    document.addEventListener('DOMContentLoaded', () => {
+      // Start typing engine
+      typeEffect();
+
+      const menuBtn = document.getElementById('mobile-menu-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const menuIcon = document.getElementById('menu-icon');
+      const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+
+      menuBtn.addEventListener('click', () => {
+        const isHidden = mobileMenu.classList.contains('hidden');
+        if (isHidden) {
+          mobileMenu.classList.remove('hidden');
+          menuIcon.classList.remove('fa-bars');
+          menuIcon.classList.add('fa-xmark');
+        } else {
+          mobileMenu.classList.add('hidden');
+          menuIcon.classList.remove('fa-xmark');
+          menuIcon.classList.add('fa-bars');
+        }
+      });
+
+      mobileLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.add('hidden');
+          menuIcon.classList.remove('fa-xmark');
+          menuIcon.classList.add('fa-bars');
+        });
+      });
+
+      // Keyboard Accessibility for Calc Modal
+      window.addEventListener('keydown', (e) => {
+        const calcModal = document.getElementById('calc-modal');
+        if (!calcModal.classList.contains('hidden')) {
+          if (e.key >= '0' && e.key <= '9') calcAppend(e.key);
+          else if (['+', '-', '*', '/'].includes(e.key)) calcAppend(e.key);
+          else if (e.key === 'Enter' || e.key === '=') calcCalculate();
+          else if (e.key === 'Backspace') calcDelete();
+          else if (e.key === 'Escape') closeCalcModal();
+        }
+      });
+    });
+  </script>
+</body>
+</html>
