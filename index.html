@@ -3,7 +3,7 @@ n<!DOCTYPE html>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Navya T | CS & Engineering Portfolio</title>
+  <title>Navya T | Computer Science & Engineering Portfolio</title>
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Font Awesome 6 Icons -->
@@ -1158,5 +1158,38 @@ n<!DOCTYPE html>
       });
     });
   </script>
+
+<!-- Dark Mode Toggle Button -->
+<button
+  id="themeToggle"
+  style="position:fixed; bottom:20px; right:20px; z-index:9999;
+         padding:12px 18px; border:0; border-radius:25px;
+         background:#4f46e5; color:white; cursor:pointer;"
+>
+  🌙 Dark Mode
+</button>
+
+<script>
+  const themeToggle = document.getElementById("themeToggle");
+
+  themeToggle.addEventListener("click", function () {
+    const isDark = document.body.classList.toggle("custom-dark");
+
+    if (isDark) {
+      document.body.style.setProperty(
+        "background-color", "#111827", "important"
+      );
+      document.body.style.setProperty(
+        "color", "#f9fafb", "important"
+      );
+      themeToggle.textContent = "☀️ Light Mode";
+    } else {
+      document.body.style.removeProperty("background-color");
+      document.body.style.removeProperty("color");
+      themeToggle.textContent = "🌙 Dark Mode";
+    }
+  });
+
+</script>
 </body>
 </html>
